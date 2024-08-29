@@ -39,7 +39,7 @@ rm src/App.test.tsx
 rm src/setupTests.ts
 
 # Setup folder structure
-mkdir -p src/{components,hooks,routes,assets/{images,fonts}}
+mkdir -p src/{components,hooks,routes,context,assets/{images,fonts}}
 
 # Create Tailwind config file
 echo "/** @type {import('tailwindcss').Config} */
@@ -316,6 +316,8 @@ npm install lucide-react
 npm install @radix-ui/react-icons
 npx shadcn-ui@latest add button
 
+# add env file
+touch .env
 # Capture the end time
 end_time=$(date +%s)
 
