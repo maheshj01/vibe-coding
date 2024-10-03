@@ -314,10 +314,13 @@ export function cn(...inputs: ClassValue[]) {
 npm install tailwindcss-animate class-variance-authority clsx tailwind-merge
 npm install lucide-react
 npm install @radix-ui/react-icons
-npx shadcn-ui@latest add button
+npx shadcn@latest add button
 
 # add env file
 touch .env
+# add to gitignore
+echo ".env" >> .gitignore
+
 # Capture the end time
 end_time=$(date +%s)
 
