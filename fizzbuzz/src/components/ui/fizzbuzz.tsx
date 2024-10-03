@@ -39,23 +39,25 @@ function FizzBuzz() {
 
   return (
     <div className="flex flex-col">
-      <form onSubmit={handleSubmit} className='flex space-x-2 sticky top-0'>
-        <h1>FizzBuzz Generator</h1>
-        <input
-          type="number"
-          className='px-2 py-1 border border-gray-300 rounded no-spinner'
-          value={inputNumber}
-          onChange={handleChange}
-          min="1"
-          max={"10000"}
-          placeholder="Enter a positive number"
-        />
-        <Button type="submit">Generate</Button>
-      </form>
-      <div className="fizzbuzz-output pt-16">
+      <div className='sticky top-0'>
+        <h1 className='sticky top-0'>FizzBuzz Generator</h1>
+        <form onSubmit={handleSubmit} className='flex space-x-2'>
+          <input
+            type="number"
+            className='px-2 py-1 border border-gray-300 rounded no-spinner w-[200px]'
+            value={inputNumber}
+            onChange={handleChange}
+            min="1"
+            max={"10000"}
+            placeholder="Enter a positive number"
+          />
+          <Button type="submit">Generate</Button>
+        </form>
+      </div>
+      <div className="pt-16">
         {output.length > 0 &&
           output.map((item, index) => (
-            <div key={index} className="fizzbuzz-item">
+            <div key={index}>
               {item}
             </div>
           ))}
