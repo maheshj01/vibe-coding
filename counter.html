@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+    body {
+        background-color: orange;
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+    }
+
+    #counter {
+        font-size: 2rem;
+    }
+
+    .container {
+        width: 40vh;
+        height: 40vh;
+        display: flex;
+        flex-direction: column;
+        padding: 0px 8px;
+        transition: all 0.5s;
+        border-radius: 8px;
+    }
+
+    .center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .text-center {
+        text-align: center;
+    }
+
+    .outer-container {
+        display: flex;
+        width: 100vw;
+        height: 100vh;
+        justify-content: center;
+        align-items: center;
+    }
+
+    button {
+        padding: 10px 20px;
+        background-color: blue;
+        color: white;
+        border: none;
+        /* circle */
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        cursor: pointer;
+        box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
+    }
+
+    button:hover {
+        background-color: rgb(63, 63, 226);
+    }
+
+    .button-group {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* space between */
+        gap: 10px;
+    }
+</style>
+
+<body>
+    <div class="outer-container center">
+        <div class="container center">
+            <h4 class="text-center">Counter</h4>
+            <h2 class="text-center" id="counter">0</h2>
+            <div class="button-group center">
+                <button id="increase">+</button>
+                <button id="decrease">-</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        const increaseButton = document.getElementById('increase');
+        const decreaseButton = document.getElementById('decrease');
+
+        // add event listener to button
+        increaseButton.addEventListener('click', increase);
+        decreaseButton.addEventListener('click', decrease);
+
+        function increase() {
+            // get counter by id
+            const counter = document.getElementById('counter');
+            // get counter value
+            let value = parseInt(counter.innerText);
+            // increase value
+            value++;
+            // set counter value
+            counter.innerText = value;
+        }
+
+        function decrease() {
+            const counter = document.getElementById('counter');
+            let value = parseInt(counter.innerText);
+            value--;
+            counter.innerText = value;
+        }
+
+    </script>
+</body>
+
+</html>
