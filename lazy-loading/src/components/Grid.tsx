@@ -14,7 +14,6 @@ const ImagesGrid: React.FC<any> = ({ className }) => {
             )
             )}
         </div>
-
     );
 };
 
