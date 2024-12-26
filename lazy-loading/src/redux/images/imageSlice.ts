@@ -2,10 +2,11 @@ import ImageModel from '@/src/models/ImageModel';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 
-const initialState: { images: ImageModel[], loading: boolean, error: any } = {
+const initialState: { images: ImageModel[], loading: boolean, error: any, page: number } = {
     images: [],
     loading: false,
     error: null,
+    page: 1
 }
 
 const imageSlice = createSlice({
@@ -16,14 +17,18 @@ const imageSlice = createSlice({
             const image = action.payload;
             state.images.push(image);
         },
-
+        addImages: (state, action: PayloadAction<ImageModel[]>) => {
+            const images = action.payload;
+            state.images.push(...images);
+        },
         setImages: (state, action: PayloadAction<ImageModel[]>) => {
             state.images = action.payload;
-            // const images = [...state.images, ...action.payload];
-            // return state;
         },
         setLoading: (state, action: PayloadAction<boolean>) => {
             state.loading = action.payload;
+        },
+        setPage: (state, action: PayloadAction<number>) => {
+            state.page = action.payload;
         },
         setError: (state, action: PayloadAction<string>) => {
             state.error = action.payload;
@@ -32,6 +37,6 @@ const imageSlice = createSlice({
 });
 
 
-export const { addImage, setImages, setLoading, setError } = imageSlice.actions;
+export const { addImage, setImages, setLoading, setError, addImages } = imageSlice.actions;
 
 export default imageSlice.reducer;
