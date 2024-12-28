@@ -28,12 +28,14 @@ const ImagesGrid: React.FC<ImagesGridProps> = memo(({ className, imageRef }) => 
     }
 
     return (
-        <div className={`gridlist ${className ?? ''}`}>
+        <div
+            key={images.length}
+            className={`gridlist ${className ?? ''}`}>
             {images.map((image: ImageModel, index: number) => (
                 <GridImage
                     className='gridlist-item'
                     ref={index === images.length - 1 ? imageRef : undefined}
-                    key={image.id}
+                    key={`${image.id}-${index}`}
                     image={image}
                 />
             ))}
