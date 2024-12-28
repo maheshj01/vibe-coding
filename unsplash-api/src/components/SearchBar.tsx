@@ -4,15 +4,22 @@ interface SearchProps {
     onChange: (value: string) => void;
     placeholder: string;
     value: string;
+    onSubmit?: (value: string) => void;
 }
 
-const SearchBar: React.FC<SearchProps> = ({ onChange, placeholder, value }) => {
+const SearchBar: React.FC<SearchProps> = ({ onChange, placeholder, value, onSubmit }) => {
 
     function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
         if (onChange) {
             onChange(e.target.value);
         }
     }
+    function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
+        if (e.key === 'Enter' && onSubmit) {
+            onSubmit(value);
+        }
+    }
+
     return (
         <div className="flex justify-center mt-4">
             <div className="relative flex items-center w-full max-w-md">
@@ -23,6 +30,7 @@ const SearchBar: React.FC<SearchProps> = ({ onChange, placeholder, value }) => {
                     placeholder={placeholder}
                     value={value}
                     onChange={handleChange}
+                    onKeyDown={handleKeyDown}
                 />
             </div>
         </div>

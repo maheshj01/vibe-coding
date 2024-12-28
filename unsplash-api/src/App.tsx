@@ -13,7 +13,7 @@ const App: React.FC = () => {
   const per_page = 20;
   const page_number = useRef<number>(0);
   const dispatch = useDispatch();
-  const debouncedValue = useDebounce(value, 500);
+  const debouncedValue = useDebounce(value, 15000);
   const loading = useSelector((state: RootState) => state.loading);
   const endOfList = useSelector((state: RootState) => state.endOfList);
   const observerRef = React.useRef<IntersectionObserver | null>(null);
@@ -73,6 +73,7 @@ const App: React.FC = () => {
         onChange={(query) => setValue(query)}
         placeholder="Search for Images"
         value={value}
+        onSubmit={() => fetchImages(debouncedValue, false)}
       />
       <div className="h-4" />
       <ImagesGrid imageRef={lastImage} className="px-4" />
