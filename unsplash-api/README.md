@@ -1,6 +1,8 @@
 # Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Sample app for Rendering long lists in react blog at maheshjamdade.medium.com
+
+this app uses unsplash api to fetch images and display them in a grid. Deployed app can be found at https://unsplash-lib.vercel.app/
 
 ## Available Scripts
 

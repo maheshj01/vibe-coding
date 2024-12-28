@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import ImageModel from '../models/ImageModel';
 import { RootState } from '../redux/store';
 import GridImage from './GridImage';
+import './Grid.css';
 
 interface ImagesGridProps {
     className?: string;
@@ -27,9 +28,10 @@ const ImagesGrid: React.FC<ImagesGridProps> = memo(({ className, imageRef }) => 
     }
 
     return (
-        <div className={`grid gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 ${className ?? ''}`}>
+        <div className={`gridlist ${className ?? ''}`}>
             {images.map((image: ImageModel, index: number) => (
                 <GridImage
+                    className='gridlist-item'
                     ref={index === images.length - 1 ? imageRef : undefined}
                     key={image.id}
                     image={image}

@@ -1,0 +1,9 @@
+.gridlist {
+  columns: 300px;
+  column-gap: 1em;
+}
+
+.gridlist-item {
+  width: 100%;
+  margin-bottom: 1em;
+}
