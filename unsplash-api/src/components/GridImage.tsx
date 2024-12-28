@@ -31,16 +31,20 @@ const GridImage = forwardRef<HTMLDivElement, GridImageProps>(({ image, className
                         <img
                             src={imageUrl}
                             alt={image.alt_description}
-                            className={"cursor-zoom-in"}
+                            className={"cursor-zoom-in transition-all duration-300 ease-in-out group-hover:filter group-hover:grayscale group-hover:brightness-50"}
                         />
-                        {(<div className="absolute bottom-0 text-white opacity-10  flex p-4 justify-between items-center space-x-2 group-hover:opacity-100 transition-opacity">
-                            <p className="text-sm font-bold">{image.description || image.alt_description}</p>
-                            <div className="flex items-center space-x-1 gap-2">
-                                <div className="flex gap-1 items-center">
-                                    <FaThumbsUp className="inline-block text-white" />
-                                    <p className="text-white">{image.likes}</p>
+                        {(<div className="absolute bottom-0 text-white opacity-10 group-hover:opacity-100 transition-opacity w-full">
+                            <div className="flex p-4 items-center">
+                                <div className="flex-grow">
+                                    <p className="text-sm font-bold">{image.description || image.alt_description}</p>
                                 </div>
-                                <FaDownload className="inline-block text-white size-5 font-bold cursor-pointer" onClick={() => handleDownload(downloadUrl)} />
+                                <div className="flex items-center space-x-2">
+                                    <div className="flex gap-1 items-center">
+                                        <FaThumbsUp className="inline-block text-white" />
+                                        <p className="text-white">{image.likes}</p>
+                                    </div>
+                                    <FaDownload className="inline-block text-white size-5 font-bold cursor-pointer" onClick={() => handleDownload(downloadUrl)} />
+                                </div>
                             </div>
                         </div>)}
                     </div>
