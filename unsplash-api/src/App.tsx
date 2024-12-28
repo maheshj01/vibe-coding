@@ -8,6 +8,7 @@ import { RootState } from "./redux/store";
 
 const App: React.FC = () => {
   const [value, setValue] = React.useState<string>("");
+  const [showSearchBar, setShowSearchBar] = React.useState<boolean>(true);
   const clientId = process.env.REACT_APP_ACCESS_KEY;
   const path = '/photos'
   const per_page = 20;
@@ -67,19 +68,41 @@ const App: React.FC = () => {
     observerRef.current.observe(element);
   }, [loading, debouncedValue]);
 
+  useEffect(() => {
+    let lastScrollY = window.scrollY;
+
+    const handleScroll = () => {
+      if (window.scrollY > lastScrollY && window.scrollY > 100) {
+        setShowSearchBar(false);
+      } else if (window.scrollY < lastScrollY || window.scrollY < 100) {
+        setShowSearchBar(true);
+      }
+      lastScrollY = window.scrollY;
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <>
-      <SearchBar
-        onChange={(query) => setValue(query)}
-        placeholder="Search for Images"
-        value={value}
-        onSubmit={() => fetchImages(debouncedValue, false)}
-      />
-      <div className="h-4" />
-      <ImagesGrid imageRef={lastImage} className="px-4" />
-      {loading && (
-        <LoadingComponent />
-      )}
+      <div className="relative">
+        <div className={`sticky p-2 top-1 z-10 duration-300 transition-all transform ${showSearchBar ? "translate-y-0" : "-translate-y-24"}`}>
+          <SearchBar
+            onChange={(query) => setValue(query)}
+            placeholder="Search for Images"
+            value={value}
+            onSubmit={() => fetchImages(debouncedValue, false)}
+          />
+        </div>
+        <div className="h-4" />
+        <ImagesGrid imageRef={lastImage} className="px-2" />
+        {loading && (
+          <LoadingComponent />
+        )}
+      </div>
     </>
   );
 }
