@@ -19,7 +19,7 @@ interface GridImageProps {
 
 const GridImage = forwardRef<HTMLDivElement, GridImageProps>(({ image, className }, ref) => {
     const { regular, small, full } = image.urls;
-    const imageUrl = regular || small;
+    const imageUrl = small || regular;
     const downloadUrl = full || regular;
     return (
         <Dialog>
