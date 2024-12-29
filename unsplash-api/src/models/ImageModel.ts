@@ -4,9 +4,15 @@ class ImageModel {
     description: string;
     alt_description: string;
     likes: number;
+    width: number;
+    height: number;
 
-    constructor(id: string, urls: URLS, description: string, alt_description: string, likes: number) {
+    constructor(id: string, urls: URLS, description: string, alt_description: string,
+        width: number, height: number,
+        likes: number) {
         this.id = id;
+        this.width = width;
+        this.height = height;
         this.urls = urls;
         this.description = description;
         this.alt_description = alt_description;

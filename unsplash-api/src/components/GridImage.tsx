@@ -25,13 +25,13 @@ const GridImage = forwardRef<HTMLDivElement, GridImageProps>(({ image, className
         <Dialog>
             <div
                 ref={ref}
-                className={`${className} bg-white rounded-lg shadow-lg overflow-hidden`}>
+                className={`${className} bg-white rounded-lg shadow-lg overflow-hidden flex items-stretch`}>
                 <DialogTrigger asChild>
                     <div className="relative group">
                         <img
                             src={imageUrl}
                             alt={image.alt_description}
-                            className={"cursor-zoom-in transition-all duration-300 ease-in-out group-hover:filter group-hover:grayscale group-hover:brightness-50"}
+                            className={"w-full h-full object-cover cursor-zoom-in transition-all duration-300 ease-in-out group-hover:filter group-hover:grayscale group-hover:brightness-50 hover:scale-125"}
                         />
                         {(<div className="absolute bottom-0 text-white opacity-10 group-hover:opacity-100 transition-opacity w-full">
                             <div className="flex p-4 items-center">

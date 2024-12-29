@@ -30,15 +30,30 @@ const ImagesGrid: React.FC<ImagesGridProps> = memo(({ className, imageRef }) => 
     return (
         <div
             key={images.length}
-            className={`gridlist ${className ?? ''}`}>
-            {images.map((image: ImageModel, index: number) => (
-                <GridImage
-                    className='gridlist-item'
-                    ref={index === images.length - 1 ? imageRef : undefined}
-                    key={`${image.id}-${index}`}
-                    image={image}
-                />
-            ))}
+            className={`grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 ${className}`}>
+            {images.map((image: ImageModel, index: number) => {
+                const width = image.width;
+                const height = image.height;
+                const aspectRatio = width / height;
+                var spanClass = 'col-span-1';
+                if (aspectRatio > 1.5) {
+                    spanClass = 'col-span-2';
+                }
+                else if (aspectRatio < 0.75) {
+                    spanClass = 'row-span-2';
+                }
+                else {
+                    spanClass = 'col-span-1';
+                }
+                return (
+                    <GridImage
+                        key={index}
+                        image={image}
+                        className={`bg-white rounded-lg shadow-lg overflow-hidden ${spanClass}`}
+                        ref={imageRef}
+                    />
+                );
+            })}
             {loading && <LoadingComponent />}
         </div>
     );
