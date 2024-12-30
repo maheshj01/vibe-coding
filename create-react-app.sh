@@ -315,6 +315,7 @@ npm install tailwindcss-animate class-variance-authority clsx tailwind-merge
 npm install lucide-react
 npm install @radix-ui/react-icons
 npx shadcn@latest add button
+npm i --save-dev @types/react-dom
 
 # add env file
 touch .env
