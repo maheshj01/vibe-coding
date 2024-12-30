@@ -322,6 +322,27 @@ touch .env
 # add to gitignore
 echo ".env" >> .gitignore
 
+echo "would you like to install redux? (y/n)"
+read -r installRedux
+if [ "$installRedux" = "y" ]; then
+  npm install redux react-redux @types/react-redux
+  npm install @reduxjs/toolkit
+
+  mkdir -p src/{store,store/reducers,store/actions}
+  echo '
+  import { configureStore } from "@reduxjs/toolkit";
+
+  const store = configureStore({
+    reducer: {}
+  });
+
+  export type RootState = ReturnType<typeof store.getState>;
+  export default store;
+  ' > src/store.ts
+
+  echo 'redux installed'
+fi
+
 # Capture the end time
 end_time=$(date +%s)
 
