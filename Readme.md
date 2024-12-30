@@ -7,7 +7,7 @@ This script does the following
 - Creates a new react app with the name you provide
 - Sets up Typescript, TailwindCSS, ShadCN UI, and the following folder structure
 
-````bash
+```bash
 - app
     - src
         - assets/
@@ -32,8 +32,7 @@ This script does the following
     - package.json
     - postcss.config.js
     - README.md
-    ```
-
+```
 
 ### Usage
 
