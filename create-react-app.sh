@@ -284,21 +284,25 @@ echo '{
 # Setup Shadcn
 
 echo '{
+{
   "$schema": "https://ui.shadcn.com/schema.json",
   "style": "new-york",
   "rsc": false,
   "tsx": true,
   "tailwind": {
     "config": "tailwind.config.js",
-    "css": "index.css",
+    "css": "src/index.css",
     "baseColor": "slate",
     "cssVariables": true,
     "prefix": ""
   },
   "aliases": {
-    "components": "src/components",
-    "utils": "src/utils"
-  }
+    "components": "@/src/components",
+    "utils": "@/src/utils",
+    "ui": "@/src/components/ui",
+    "hooks": "@/src/hooks"
+  },
+  "iconLibrary": "lucide"
 }
 ' > components.json
 
