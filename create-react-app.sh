@@ -283,7 +283,7 @@ echo '{
 
 # Setup Shadcn
 
-echo '{
+echo '
 {
   "$schema": "https://ui.shadcn.com/schema.json",
   "style": "new-york",
