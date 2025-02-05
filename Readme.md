@@ -40,4 +40,16 @@ To create a new react app, run the following command
 
 ```bash
 bash create-react-app.sh <app-name>
-````
+```
+
+#### Fixes for Issues in the script
+
+- Use "tailwindcss": "^3.4.10"
+
+
+This script should run without issueson mac, But when running on Windows with WSL you need to convert the file to Unix format using the following command
+
+```bash
+sudo apt-get install dos2unix
+dos2unix create.sh
+```
