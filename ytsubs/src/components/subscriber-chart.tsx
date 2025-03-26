@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts"
 import { Skeleton } from "./ui/skeleton"
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from "recharts"
 
 interface SubscriberChartProps {
     subscriberCount: number | null
@@ -36,9 +36,14 @@ export default function SubscriberChart({ subscriberCount, loading }: Subscriber
         }
     }, [subscriberCount])
 
+    // Calculate min and max for better visualization
+    const minValue = data.length > 0 ? Math.min(...data.map((d) => d.count)) - 5 : 0
+
+    const maxValue = data.length > 0 ? Math.max(...data.map((d) => d.count)) + 5 : 100
+
     return (
         <div className="h-[300px]">
-            <h3 className="text-lg font-medium mb-4">Subscriber Trend</h3>
+            <h3 className="text-lg font-medium mb-4 text-white">Subscriber Trend</h3>
 
             {loading && data.length === 0 ? (
                 <Skeleton className="w-full h-[250px]" />
@@ -47,31 +52,72 @@ export default function SubscriberChart({ subscriberCount, loading }: Subscriber
                     <LineChart
                         data={data}
                         margin={{
-                            top: 5,
+                            top: 20,
                             right: 30,
                             left: 20,
-                            bottom: 5,
+                            bottom: 20,
                         }}
                     >
-                        <CartesianGrid strokeDasharray="3 3" stroke="#444" />
-                        <XAxis dataKey="time" stroke="#888" tick={{ fill: "#888" }} />
-                        <YAxis stroke="#888" tick={{ fill: "#888" }} domain={["auto", "auto"]} />
+                        <defs>
+                            <linearGradient id="colorCount" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="5%" stopColor="#ff0000" stopOpacity={0.8} />
+                                <stop offset="95%" stopColor="#ff0000" stopOpacity={0.2} />
+                            </linearGradient>
+                        </defs>
+                        <CartesianGrid strokeDasharray="3 3" stroke="#444" opacity={0.3} />
+                        <XAxis
+                            dataKey="time"
+                            stroke="#aaa"
+                            tick={{ fill: "#aaa" }}
+                            axisLine={{ stroke: "#555" }}
+                            tickLine={{ stroke: "#555" }}
+                        />
+                        <YAxis
+                            stroke="#aaa"
+                            tick={{ fill: "#aaa" }}
+                            domain={[minValue, maxValue]}
+                            axisLine={{ stroke: "#555" }}
+                            tickLine={{ stroke: "#555" }}
+                        />
                         <Tooltip
                             contentStyle={{
-                                backgroundColor: "#333",
-                                border: "1px solid #555",
+                                backgroundColor: "#222",
+                                border: "1px solid #444",
                                 color: "#fff",
+                                borderRadius: "4px",
+                                boxShadow: "0 4px 12px rgba(0,0,0,0.5)",
                             }}
+                            itemStyle={{ color: "#fff" }}
+                            labelStyle={{ color: "#aaa", marginBottom: "4px" }}
                         />
+                        {data.length > 1 && (
+                            <ReferenceLine
+                                y={data[0].count}
+                                stroke="#666"
+                                strokeDasharray="3 3"
+                                label={{
+                                    value: "Start",
+                                    position: "insideBottomRight",
+                                    fill: "#aaa",
+                                    fontSize: 12,
+                                }}
+                            />
+                        )}
                         <Line
                             type="monotone"
                             dataKey="count"
                             stroke="#ff0000"
-                            strokeWidth={2}
-                            dot={{ fill: "#ff0000", r: 4 }}
-                            activeDot={{ r: 6, fill: "#ff0000" }}
+                            strokeWidth={3}
+                            dot={{ fill: "#ff0000", r: 4, strokeWidth: 2, stroke: "#fff" }}
+                            activeDot={{
+                                r: 8,
+                                fill: "#ff0000",
+                                stroke: "#fff",
+                                strokeWidth: 2,
+                            }}
                             isAnimationActive={true}
                             animationDuration={500}
+                            fill="url(#colorCount)"
                         />
                     </LineChart>
                 </ResponsiveContainer>

@@ -24,15 +24,14 @@ export default function SubscriberDashboard() {
 
     return (
         <div className="container mx-auto px-4 py-8">
-            <header className="mb-8 text-center">
+            <header className="mb-8 text-center bg-gray-700 rounded-lg px-2">
                 <div className="flex items-center justify-center gap-2 mb-2">
                     <Youtube className="h-8 w-8 text-red-500" />
-                    <h1 className="text-3xl font-bold">YouTube Subscriber Tracker</h1>
+                    <h1 className="text-white font-bold">YouTube Channel Stats</h1>
                 </div>
-                <p className="text-gray-400">Track your favorite YouTube channels in real-time</p>
             </header>
 
-            <Card className="mb-8 bg-gray-800 border-gray-700">
+            <Card className="mb-8 bg-gray-800 border-gray-700 rounded-lg">
                 <CardContent className="pt-6">
                     <form onSubmit={handleSubmit} className="flex gap-2">
                         <Input
@@ -43,7 +42,7 @@ export default function SubscriberDashboard() {
                             className="bg-gray-700 border-gray-600 text-white"
                         />
                         <Button type="submit" variant="default" className="bg-red-600 hover:bg-red-700">
-                            Track
+                            Search
                         </Button>
                     </form>
                 </CardContent>
@@ -57,19 +56,19 @@ export default function SubscriberDashboard() {
                 </Card>
             ) : (
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                    <Card className="bg-gray-800 border-gray-700 lg:col-span-2">
+                    <Card className="bg-gray-800 border-gray-700 lg:col-span-2 rounded-lg">
                         <CardContent className="pt-6">
                             <SubscriberCounter subscriberCount={subscriberCount} loading={loading} channelInfo={channelInfo} />
                         </CardContent>
                     </Card>
 
-                    <Card className="bg-gray-800 border-gray-700">
+                    <Card className="bg-gray-800 border-gray-700 rounded-lg">
                         <CardContent className="pt-6">
                             <SubscriberStats subscriberCount={subscriberCount} loading={loading} channelInfo={channelInfo} />
                         </CardContent>
                     </Card>
 
-                    <Card className="bg-gray-800 border-gray-700 lg:col-span-3">
+                    <Card className="bg-gray-800 border-gray-700 lg:col-span-3 rounded">
                         <CardContent className="pt-6">
                             <SubscriberChart subscriberCount={subscriberCount} loading={loading} />
                         </CardContent>
@@ -77,7 +76,7 @@ export default function SubscriberDashboard() {
                 </div>
             )}
 
-            <footer className="mt-12 text-center text-gray-500 text-sm">
+            <footer className="mt-12 text-center text-white bg-gray-700 text-sm px-2 rounded-lg flex items-center justify-center">
                 <p>Data provided by YouTube Data API • Refreshes every 30 seconds</p>
             </footer>
         </div>
