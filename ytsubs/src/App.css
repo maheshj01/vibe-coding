@@ -1,0 +1,46 @@
+.app {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.columns {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex: 1
+}
+
+aside,
+nav {
+    width: 100px;
+    display: flex;
+    background-color: #76ff89;
+    justify-content: center;
+    flex-shrink: 0
+}
+
+main {
+    flex: 1;
+    display: flex;
+    background-color: #caec64;
+    justify-content: center;
+}
+
+aside {
+    background-color: #b36df9;
+}
+
+header {
+    background-color: slategray;
+    display: flex;
+    width: 100%;
+    height: 60px;
+}
+
+footer {
+    background-color: slategray;
+    display: flex;
+    width: 100%;
+    height: 60px;
+}
