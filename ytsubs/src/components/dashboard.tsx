@@ -13,7 +13,7 @@ import SubscriberChart from "./subscriber-chart"
 import { Youtube } from "lucide-react"
 
 export default function SubscriberDashboard() {
-    const [channelId, setChannelId] = useState("UCX24LefLR5Bd1rtzHYEUmPg")
+    const [channelId, setChannelId] = useState("UCBR8-60-B28hp2BmDPdntcQ")
     const [inputChannelId, setInputChannelId] = useState(channelId)
     const { subscriberCount, loading, error, channelInfo } = useYTSubscribers(channelId)
 
