@@ -28,7 +28,7 @@ npx create-react-app $1 --template typescript
 cd "$1" || exit
 
 # Install TailwindCSS and its dependencies
-npm install -D tailwindcss postcss autoprefixer
+npm install -D tailwindcss@3 postcss autoprefixer
 npm install react-icons --save
 npx tailwindcss init -p
 
@@ -317,7 +317,7 @@ export function cn(...inputs: ClassValue[]) {
 
 npm install tailwindcss-animate class-variance-authority clsx tailwind-merge
 npm install lucide-react
-npm install @radix-ui/react-icons
+npm install @radix-ui/react-icons 
 npx shadcn@latest add button
 npm i --save-dev @types/react-dom
 
