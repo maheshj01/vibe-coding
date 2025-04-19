@@ -8,6 +8,7 @@ const ProductsGrid: React.FC<ProductsGridProps> = ({ className }) => {
     const products = useSelector((state: RootState) => state.products.products);
     return (
         <div className={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 ${className}`}>
+            { }
             {
                 products.map((product) => (
                     <ProductCard key={product.id} product={product} />
