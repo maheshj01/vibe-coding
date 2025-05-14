@@ -39,7 +39,7 @@ rm src/App.test.tsx
 rm src/setupTests.ts
 
 # Setup folder structure
-mkdir -p src/{components,hooks,routes,context,assets/{images,fonts}}
+mkdir -p src/{components,hooks,lib,routes,context,assets/{images,fonts}}
 
 # Create Tailwind config file
 echo "/** @type {import('tailwindcss').Config} */
@@ -297,10 +297,10 @@ echo '
     "prefix": ""
   },
   "aliases": {
-    "components": "@/src/components",
-    "utils": "@/src/utils",
-    "ui": "@/src/components/ui",
-    "hooks": "@/src/hooks"
+    "components": "src/components",
+    "utils": "src/utils",
+    "ui": "src/components/ui",
+    "hooks": "src/hooks"
   },
   "iconLibrary": "lucide"
 }
@@ -313,11 +313,11 @@ import { twMerge } from "tailwind-merge";
 export function cn(...inputs: ClassValue[]) {
     return twMerge(clsx(inputs))
 }
-' > src/utils.ts
+' > src/lib/utils.ts
 
 npm install tailwindcss-animate class-variance-authority clsx tailwind-merge
 npm install lucide-react
-npm install @radix-ui/react-icons 
+npm install react-icons@5.3.0
 npx shadcn@latest add button
 npm i --save-dev @types/react-dom
 
